@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "name": "http://localhost/mytutor/admin/php/login.php",
+            "request": "launch",
+            "url": "http://localhost/mytutor/admin/php/login.php"
+        }
+    ]
+}
