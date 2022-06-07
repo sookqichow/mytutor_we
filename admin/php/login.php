@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
         $_SESSION["sessionid"] = session_id();
         $_SESSION["email"] = $email;
         echo "<script>alert('Login Success');</script>";
-        echo "<script> window.location.replace('index.php')</script>";
+        echo "<script> window.location.replace('mainpage.php')</script>";
     } else {
         echo "<script>alert('Login Failed');</script>";
         echo "<script> window.location.replace('login.php')</script>";
@@ -30,11 +30,12 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="/mytutor/admin/js/login.js"></script>
 </head>
 
 <body onload="loadCookies()">
-    <header class="w3-header w3-red w3-center w3-padding-32">
+    <header class="w3-header w3-theme w3-center w3-padding-32" >
         <h3>My Tutor User</h3>
         <p>Login Page</p>
     </header>
@@ -54,27 +55,27 @@ if (isset($_POST['submit'])) {
                     <label>Remember Me</label>
                 </p>
                 <p>
-                    <input class="w3-button w3-round w3-border w3-red" type="submit" name="submit" id="idsubmit">
+                    <input class="w3-button w3-round w3-border w3-theme-2" type="submit" name="submit" id="idsubmit">
                 </p>
-                <a href="register.php" class="w3-bar-item w3-button">Haven't register? Register now</a>
+                <a href="register.php" class="w3-bar-item w3-button" style="color:#e29578;">Haven't register? Register now</a>
 
             </form>
         </div>
     </div>
-    <div id="cookieNotice" class="w3-right w3-block" style="display: none;">
-        <div class="w3-blue">
+    <div id="cookieNotice" class="w3-right w3-block " style="display: none;">
+        <div class="w3-theme-1 w3-padding" >
             <h4>Cookie Consent</h4>
             <p>This website uses cookies or similar technologies, to enhance your
                 browsing experience and provide personalized recommendations.
                 By continuing to use our website, you agree to our
-                <a style="color:#115cfa;" href="/privacy-policy">Privacy Policy</a>
+                <a style="color:#e29578;" href="/privacy-policy">Privacy Policy</a>
             </p>
             <div class="w3-button">
-                <button onclick="acceptCookieConsent();">Accept</button>
+                <button onclick="acceptCookieConsent();" class="w3-theme-2">Accept</button>
             </div>
         </div>
     </div>
-    <footer class="w3-footer w3-center w3-red">
+    <footer class="w3-footer w3-center w3-theme">
         <p>My Tutor</p>
     </footer>
 

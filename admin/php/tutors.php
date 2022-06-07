@@ -11,11 +11,11 @@ if (isset($_GET['submit'])) {
     $operation = $_GET['submit'];
     if ($operation == 'search') {
         $search = $_GET['search'];
-            $sqlsubject = "SELECT * FROM tbl_subjects WHERE subject_name LIKE '%$search%'";
+            $sqltutor = "SELECT * FROM tbl_tutors WHERE tutor_name LIKE '%$search%'";
         
     }
 } else {
-    $sqlsubject = "SELECT * FROM tbl_subjects";
+    $sqltutor = "SELECT * FROM tbl_tutors";
 }
 
 $results_per_page = 10;
@@ -28,18 +28,17 @@ if (isset($_GET['pageno'])) {
 }
 
 
-$stmt = $conn->prepare($sqlsubject);
+$stmt = $conn->prepare($sqltutor);
 $stmt->execute();
 $number_of_result = $stmt->rowCount();
 $number_of_page = ceil($number_of_result / $results_per_page);
-$sqlsubject = $sqlsubject . " LIMIT $page_first_result , $results_per_page";
-$stmt = $conn->prepare($sqlsubject);
+$sqltutor = $sqltutor . " LIMIT $page_first_result , $results_per_page";
+$stmt = $conn->prepare($sqltutor);
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 $rows = $stmt->fetchAll();
 
 $conn= null;
-
 function subString($str)
 {
     if (strlen($str) > 15) {
@@ -62,6 +61,7 @@ function subString($str)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/mytutor/admin/js/mainpage.js"></script>
     <title>Welcome to My Tutor</title>
+    
 </head>
 
 <body>
@@ -89,7 +89,7 @@ function subString($str)
         </div>
     </div>
     <div class="w3-card w3-container w3-padding w3-margin w3-round">
-        <h3>Course Search</h3>
+        <h3>Tutor Search</h3>
         <form>
             <div class="w3-row">
                 <div style="padding-right:4px">
@@ -104,23 +104,25 @@ function subString($str)
     <div class="w3-grid-template">
         <?php
         $i = 0;
-        foreach ($rows as $subjects) {
+        foreach ($rows as $tutors) {
             $i++;
-            $subject_id = $subjects['subject_id'];
-                $subject_name = subString($subjects['subject_name']);
-                $subject_description = subString($subjects['subject_description']);
-                $subject_price = $subjects['subject_price'];
-                $tutor_id = $subjects['tutor_id'];
-                $subject_sessions = $subjects['subject_sessions'];
-                $subject_rating = $subjects['subject_rating'];
+            $tutor_id = $tutors['tutor_id'];
+                $tutor_name = subString($tutors['tutor_name']);
+                $tutor_phone = $tutors['tutor_phone'];
+                $tutor_email = subString($tutors['tutor_email']);
+                $tutor_password = $tutors['tutor_password'];
+                $tutor_description = subString($tutors['tutor_description']);
+                $tutor_datereg = $tutors['tutor_datereg'];
             echo "<div class='w3-card-4 w3-round' style='margin:4px'>
-            <header class='w3-container w3-theme'><h5><b>$subject_name</b></h5></header>";
-            echo "<a style='text-decoration: none;'> <img class='w3-image' src=/mytutor/admin/res/assets/courses/$subject_id.png" .
+            <header class='w3-container w3-theme'><h5><b>$tutor_name</b></h5></header>";
+            echo "<a> <img class='w3-image' src=/mytutor/admin/res/assets/tutors/$tutor_id.jpg" .
                 " onerror=this.onerror=null;this.src='../../admin/users/user.jpg'"
                 . " style='width:100%;height:250px'></a><hr>";
-            echo "<div class='w3-container '><p>Price: RM $subject_price<br>Session: $subject_sessions<br>Rating: $subject_rating <i class='fa fa-star'></i><br>Description: $subject_description</p></div>";
-            echo "<button class=' w3-theme-2 w3-round w3-block'><a href='coursedetails.php?subject_id=$subject_id'>View Details</a></button>
+            echo "<div class='w3-container '><p>Phone: $tutor_phone<br>Email: $tutor_email<br>Description: $tutor_description </p></div>";
+            echo "<button class=' w3-theme-2 w3-round w3-block'><a href='tutordetails.php?tutor_id=$tutor_id'>View Details</a></button>
             </div>";
+           
+            
         }
         ?>
     </div>
@@ -137,7 +139,7 @@ function subString($str)
     echo "<div class='w3-container w3-row'>";
     echo "<center>";
     for ($page = 1; $page <= $number_of_page; $page++) {
-        echo '<a href = "index.php?pageno=' . $page . '" style=
+        echo '<a href = "tutor.php?pageno=' . $page . '" style=
             "text-decoration: none">&nbsp&nbsp' . $page . ' </a>';
     }
     echo " ( " . $pageno . " )";
@@ -152,6 +154,5 @@ function subString($str)
     
 
 </body>
-
 
 </html>

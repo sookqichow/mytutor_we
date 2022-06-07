@@ -2,3 +2,81 @@
     max-width:600px;
     margin: auto;
 }
+
+.w3-theme {color:#fff !important; background-color:#006d77 !important}
+.w3-theme-1 {color:#000 !important; background-color:#ffddd2 !important}
+.w3-theme-2 {color:#000 !important; background-color:#83c5be !important}
+
+.topnav {
+    overflow: hidden;
+    background-color: #006d77;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #83c5be;
+    color: black;
+  }
+  
+  
+  .topnav-right {
+    float: right;
+  }
+  
+  .w3-grid-template {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+hr {
+    margin: 0em;
+    border-width: 2px;
+}
+
+@media screen and (max-width: 1000px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .resimg {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .resimg {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .resimg {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .w3-grid-template {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .resimg {
+        width: 100%;
+    }
+}

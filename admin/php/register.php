@@ -15,9 +15,9 @@ if (isset($_POST['submit'])) {
             $form = $_POST['form'];
             $address = $_POST['address'];
             $pass = sha1($_POST['password']);
-            $sqlregister = "INSERT INTO `tbl_newusers`(`idno`, `name`, `email`, `pass`, 
-                `address`, `phone`, `form`) VALUES ('$idno','$name','$email','$pass','$address',
-                '$phono','[$form')";
+            $sqlregister = "INSERT INTO `tbl_newusers`( `name`,`idno`, `email`, `pass`, 
+                `address`, `phone`, `form`) VALUES ('$name','$idno','$email','$pass','$address',
+                '$phone','$form')";
             try {
                 $conn->exec($sqlregister);
                 uploadImage($icno);
@@ -35,9 +35,9 @@ if (isset($_POST['submit'])) {
             $form = $_POST['form'];
             $address = $_POST['address'];
             $pass = sha1($_POST['password']);
-            $sqlregister = "INSERT INTO `tbl_newusers`(`id`, `name`, `email`, `pass`, 
-                `address`, `phone`, `form`) VALUES ('$idno','$name','$email','$pass','$address',
-                '$phono','[$form')";
+            $sqlregister = "INSERT INTO `tbl_newusers`(`name`,`idno`, `email`, `pass`, 
+                `address`, `phone`, `form`) VALUES ('$name','$idno','$email','$pass','$address',
+                '$phone','[$form')";
             try {
                 $conn->exec($sqlregister);
                 echo "<script>alert('Registration successful')</script>";
@@ -74,12 +74,12 @@ function uploadImage($email)
 </head>
 
 <body>
-    <div class="w3-container  w3-margin:auto form-container-reg">
+    <div class="w3-container  w3-theme-2 w3-margin:auto form-container-reg">
         <div class="w3-card">
-            <div class="w3-conatiner w3-red">
+            <div class="w3-conatiner w3-theme">
                 <p>New User Registration</p>
             </div>
-            <form class="w3-container w3-padding formco" name="registerForm" action="register.php" method="post" onsubmit="return confimrDialog()" enctype="multipart/form-data">
+            <form class="w3-container w3-theme-2 w3-padding formco" name="registerForm" action="register.php" method="post" onsubmit="return confimrDialog()" enctype="multipart/form-data">
                 <p>
                 <div class="w3-container w3-border w3-center w3-padding">
                     <img class="w3-image w3-round w3-margin" src="../res/images/users/user.png" style="width:25%;
@@ -125,7 +125,7 @@ function uploadImage($email)
                     <label>Address</label>
                     <textarea class="w3-input w3-border " name="address" id="idaddress" rows="4" cols="50" width="100%" placeholedr="Please enter your address" required></textarea>
                 </p>
-                <div class="row"><input class="w3-input w3-border w3-block w3-red w3-round" type="submit" name="submit" value="Submit">
+                <div class="row"><input class="w3-input w3-border w3-block w3-theme w3-round" type="submit" name="submit" value="Submit">
                 </div>
             </form>
         </div>
