@@ -77,7 +77,7 @@ if (isset($_GET['subject_id'])) {
 
         </div>
         <div class="w3-bar w3-theme-2">
-            <a href="subject.php" class="w3-bar-item w3-button w3-right">Back</a>
+            <a href="index.php" class="w3-bar-item w3-button w3-right">Back</a>
         </div>
     </div>
 
