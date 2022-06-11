@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $pass = sha1($_POST['password']);
             $sqlregister = "INSERT INTO `tbl_newusers`(`name`,`idno`, `email`, `pass`, 
                 `address`, `phone`, `form`) VALUES ('$name','$idno','$email','$pass','$address',
-                '$phone','[$form')";
+                '$phone','$form')";
             try {
                 $conn->exec($sqlregister);
                 echo "<script>alert('Registration successful')</script>";

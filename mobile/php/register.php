@@ -5,20 +5,21 @@ if (!isset($_POST)) {
     die();
 }
 include_once("dbconnect.php");
-$email = addslashes($_POST['email']);
 $name = addslashes($_POST['name']);
-$phoneno = $_POST['phoneno'];
-$pass = $_POST['pass'];
+$idno = $_POST['idno'];
+$email = addslashes($_POST['email']);
+$password = sha1($_POST['password']);
 $address = $_POST['address'];
+$phone = $_POST['phone'];
 $base64image = $_POST['image'];
-$status = "available";
-$sqlinsert = "INSERT INTO `tbl_users`( `user_email`, `user_name`, `user_phoneno`, `user_pass`, `user_address`) 
-VALUES ('[email]','[name]','[phoneno]','[pass]','[vaddress]')";
-if ($conn->query($sqlinsert) === TRUE) {
+$sqlregister = "INSERT INTO `tbl_newusers`(`name`,`idno`,`email`,`pass`,`address`,`phone`) 
+                VALUES ('$name','$idno','$email','$password','$address',
+                '$phone')";
+if ($conn->query($sqlregister) === TRUE) {
     $response = array('status' => 'success', 'data' => null);
     $filename = mysqli_insert_id($conn);
     $decoded_string = base64_decode($base64image);
-    $path = '../assets/products/' . $filename . '.jpg';
+    $path = 'mytutor/user' . $filename . '.jpg';
     $is_written = file_put_contents($path, $decoded_string);
     sendJsonResponse($response);
 } else {
@@ -31,4 +32,3 @@ function sendJsonResponse($sentArray)
     header('Content-Type: application/json');
     echo json_encode($sentArray);
 }
-?>
