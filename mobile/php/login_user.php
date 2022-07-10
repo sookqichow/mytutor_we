@@ -21,6 +21,15 @@ if ($numrow > 0) {
         $user['password'] = $row['user_pass'];
         $user['address'] = $row['user_address'];
     }
+    $sqlgetqty = "SELECT * FROM tbl_carts WHERE user_email = '$email'";
+    $result = $conn->query($sqlgetqty);
+    $number_of_result = $result->num_rows;
+    $carttotal = 0;
+    while($row = $result->fetch_assoc()) {
+        $carttotal = $row['cart_qty'] + $carttotal;
+    }
+    $mycart = array();
+    $mycart['cart'] =$carttotal;
     $response = array('status' => 'success', 'data' => $user);
     sendJsonResponse($response);
 } else {
